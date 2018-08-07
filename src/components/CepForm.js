@@ -6,28 +6,32 @@ class CepForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cep: ''
+      cep: '',
+      error: null
     };
+    this.cepInput = React.createRef();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateCep = this.validateCep.bind(this);
     window.handleCepRequest = this.handleCepRequest.bind(this);
   }
 
   handleChange(event) {
     this.setState({
-      cep: event.target.value
+      cep: event.target.value,
+      error: this.state.error
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
     if(this.isValidCep()) {
       const jsonp = `https://viacep.com.br/ws/${this.state.cep.replace('-', '')}/json/?callback=handleCepRequest`;
       const script = document.createElement('script');
       script.src = jsonp;
       document.getElementsByTagName('head')[0].appendChild(script);
+      this.cepInput.blur();
     }
   }
 
@@ -40,7 +44,18 @@ class CepForm extends Component {
     return rx.test(this.state.cep);
   }
 
+  validateCep() {
+    this.setState({
+      cep: this.state.cep,
+      error: !this.isValidCep()
+    });
+  }
+
   render() {
+    let showError;
+    if(this.state.error) {
+      showError = <p className="error">Preencha um CEP no formato 99999-999</p>
+    }
     return (
       <form className="cep-form" onSubmit={this.handleSubmit}>
         <h3>Consultar</h3>
@@ -52,9 +67,12 @@ class CepForm extends Component {
             placeholder="99999-999"
             value={this.state.value}
             onChange={this.handleChange}
+            onBlur={this.validateCep}
+            inputRef={(r) => this.cepInput = r}
           />
           <input type="submit" className="form-btn" value="Buscar" />
         </fieldset>
+        {showError}
       </form>
     );
   }

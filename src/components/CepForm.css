@@ -29,3 +29,10 @@ input[name=cep], .form-btn {
   background: royalblue;
   color: #fff;
 }
+
+.error {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: maroon;
+  text-align: center;
+}
