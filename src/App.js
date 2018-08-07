@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: null
+      address: null,
+      error: null
     };
 
     this.updateAddress   = this.updateAddress.bind(this);
@@ -15,14 +16,22 @@ class App extends Component {
   }
 
   updateAddress(address) {
-    this.setState({
-      address: address
-    });
+    let state = {
+      address: null,
+      error: null
+    };
+    if(address.erro) {
+      state.error = true
+    } else {
+      state.address = address;
+    }
+    this.setState(state);
   }
 
   cleanAddress() {
     this.setState({
-      address: null
+      address: null,
+      error: null
     });
   }
 
@@ -30,6 +39,8 @@ class App extends Component {
     let showMap;
     if(this.state.address) {
       showMap = <Address address={this.state.address} onClose={this.cleanAddress}/>;
+    }  else if(this.state.error){
+      showMap = <p className="error">Endereço não encontrado</p>
     }
 
     return (

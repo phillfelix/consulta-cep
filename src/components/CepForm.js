@@ -11,7 +11,7 @@ class CepForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    window.hancleCepRequest = this.hancleCepRequest.bind(this);
+    window.handleCepRequest = this.handleCepRequest.bind(this);
   }
 
   handleChange(event) {
@@ -23,14 +23,21 @@ class CepForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const jsonp = `https://viacep.com.br/ws/${this.state.cep.replace('-', '')}/json/?callback=hancleCepRequest`;
-    const script = document.createElement('script');
-    script.src = jsonp;
-    document.getElementsByTagName('head')[0].appendChild(script);
+    if(this.isValidCep()) {
+      const jsonp = `https://viacep.com.br/ws/${this.state.cep.replace('-', '')}/json/?callback=handleCepRequest`;
+      const script = document.createElement('script');
+      script.src = jsonp;
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
   }
 
-  hancleCepRequest(cepInfo) {
+  handleCepRequest(cepInfo) {
     this.props.onSubmit(cepInfo);
+  }
+
+  isValidCep() {
+    const rx = /^[0-9]{5}-[0-9]{3}$/;
+    return rx.test(this.state.cep);
   }
 
   render() {
