@@ -14,12 +14,12 @@ fieldset {
   line-height: 1.5em;
 }
 
-label[for=cep], input[id=cep] {
+label[for=cep], input[name=cep] {
   margin-right: 20px;
   color: #999;
 }
 
-input[id=cep], .form-btn {
+input[name=cep], .form-btn {
   border-radius: 2px;
   border: #ccc 1px solid;
   padding: 5px 10px;

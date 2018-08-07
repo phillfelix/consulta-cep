@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './CepForm.css';
+import InputMask from 'react-input-mask';
 
 class CepForm extends Component {
   constructor(props) {
@@ -38,11 +39,9 @@ class CepForm extends Component {
         <h3>Consultar</h3>
         <fieldset>
           <label htmlFor="cep">CEP</label>
-          <input
-            type="text"
-            id="cep"
-            // pattern="/[0-9]{5}-[0-9]{3}/"
-            // required
+          <InputMask
+            mask="99999-999"
+            name="cep"
             placeholder="99999-999"
             value={this.state.value}
             onChange={this.handleChange}
