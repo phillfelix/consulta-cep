@@ -13,3 +13,8 @@ html, body {
   -webkit-justify-content: center;
   justify-content: center;
 }
+
+.App {
+  width: 450px;
+  margin: 0 20px;
+}
