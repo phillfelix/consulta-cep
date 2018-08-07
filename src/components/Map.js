@@ -9,7 +9,7 @@ class Map extends Component {
   }
 
   render() {
-    const iframeSrc = `https://www.google.com/maps/embed/v1/search?q=${this.buildSearchString()}&key=AIzaSyC01TOKT7eOuuxoEWD8s6vr5FUjORha3yQ`;
+    const iframeSrc = `https://www.google.com/maps/embed/v1/search?q=${this.buildSearchString()}&key=AIzaSyAXJTjPOeY5duT8NFC3nabOuYZRlq_5Dt4`;
 
     return (
       <div className="map-wrapper">
