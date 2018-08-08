@@ -20,7 +20,7 @@ class SearchAddress extends Component {
       address: null,
       error: null
     };
-    console.log(address);
+
     if(address.erro) {
       state.error = address.erro
     } else {
