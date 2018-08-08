@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Address.css';
-import Map from './Map';
-import closeIcon from './close-icon.svg';
+import Map from '../Map';
+import closeIcon from '../../assets/close-icon.svg';
 
 class Address extends Component {
   render() {

@@ -5,7 +5,7 @@ import Home from './components/Home';
 import SearchAddress from './components/SearchAddress';
 import NotFound from './components/NotFound';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, wi } from 'react-router-dom';
 
 ReactDOM.render(
   <BrowserRouter>

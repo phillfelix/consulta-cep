@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './SearchAddress.css';
-import CepForm from './CepForm';
-import Address from './Address';
+import CepForm from '../CepForm';
+import Address from '../Address';
 
 class SearchAddress extends Component {
   constructor(props) {
