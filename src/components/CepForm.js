@@ -6,7 +6,7 @@ class CepForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cep: null
+      cep: ''
     };
     this.cepInput = React.createRef();
 
@@ -65,7 +65,7 @@ class CepForm extends Component {
             mask="99999-999"
             name="cep"
             placeholder="99999-999"
-            value={this.state.value}
+            value={this.state.cep}
             onChange={this.handleChange}
             onBlur={this.validateCep}
             inputRef={(r) => this.cepInput = r}
