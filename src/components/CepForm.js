@@ -6,8 +6,7 @@ class CepForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cep: '',
-      error: null
+      cep: null
     };
     this.cepInput = React.createRef();
 
@@ -19,23 +18,27 @@ class CepForm extends Component {
 
   handleChange(event) {
     this.setState({
-      cep: event.target.value,
-      error: this.state.error
+      cep: event.target.value
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if(this.isValidCep()) {
+    if(this.validateCep()) {
       const jsonp = `https://viacep.com.br/ws/${this.state.cep.replace('-', '')}/json/?callback=handleCepRequest`;
       const script = document.createElement('script');
       script.src = jsonp;
       document.getElementsByTagName('head')[0].appendChild(script);
       this.cepInput.blur();
+    } else {
+      this.props.onSubmit({
+        erro: 'Preencha um CEP no formato 99999-999'
+      })
     }
   }
 
   handleCepRequest(cepInfo) {
+    if (cepInfo.erro) cepInfo.erro = "Endereço não encontrado"
     this.props.onSubmit(cepInfo);
   }
 
@@ -45,17 +48,14 @@ class CepForm extends Component {
   }
 
   validateCep() {
+    const valid = this.isValidCep();
     this.setState({
-      cep: this.state.cep,
-      error: !this.isValidCep()
+      cep: this.state.cep
     });
+    return valid;
   }
 
   render() {
-    let showError;
-    if(this.state.error) {
-      showError = <p className="error">Preencha um CEP no formato 99999-999</p>
-    }
     return (
       <form className="cep-form" onSubmit={this.handleSubmit}>
         <h3>Consultar</h3>
@@ -72,7 +72,6 @@ class CepForm extends Component {
           />
           <input type="submit" className="form-btn" value="Buscar" />
         </fieldset>
-        {showError}
       </form>
     );
   }

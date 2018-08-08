@@ -1,0 +1,9 @@
+.start-btn {
+  border-radius: 2px;
+  border: #ccc 1px solid;
+  padding: 10px 20px;
+  background: royalblue;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}

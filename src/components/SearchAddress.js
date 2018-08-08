@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
-import CepForm from './components/CepForm';
-import Address from './components/Address';
+import './SearchAddress.css';
+import CepForm from './CepForm';
+import Address from './Address';
 
-class App extends Component {
+class SearchAddress extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,8 +20,9 @@ class App extends Component {
       address: null,
       error: null
     };
+    console.log(address);
     if(address.erro) {
-      state.error = true
+      state.error = address.erro
     } else {
       state.address = address;
     }
@@ -40,7 +41,7 @@ class App extends Component {
     if(this.state.address) {
       showMap = <Address address={this.state.address} onClose={this.cleanAddress}/>;
     }  else if(this.state.error){
-      showMap = <p className="error">Endereço não encontrado</p>
+      showMap = <p className="error">{this.state.error}</p>
     }
 
     return (
@@ -55,4 +56,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default SearchAddress;
