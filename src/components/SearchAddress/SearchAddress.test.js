@@ -14,7 +14,7 @@ const error = {
   erro: 'Erro'
 }
 
-it('renders', () => {
+it('renders without crashing', () => {
   shallow(<SearchAddress />);
 });
 
