@@ -26,6 +26,7 @@ class SearchAddress extends Component {
     } else {
       state.address = address;
     }
+
     this.setState(state);
   }
 
