@@ -33,7 +33,7 @@ class CepForm extends Component {
     } else {
       this.props.onSubmit({
         erro: 'Preencha um CEP no formato 99999-999'
-      })
+      });
     }
   }
 
